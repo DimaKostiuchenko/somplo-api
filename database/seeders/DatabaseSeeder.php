@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
+use App\Models\Seller;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,9 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            SellerSeeder::class,
-            ProductSeeder::class,
-        ]);
+
+        Seller::factory()
+            ->count(5)
+            ->has(Product::factory()->count(10))
+            ->create();
+
     }
 }
